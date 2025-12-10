@@ -1,1 +1,7 @@
-(ФАЙЛИ СТАНДАРТИИ FLUTTER PROJECT.PBXPROJ)
+{
+  "archiveVersion": "1",
+  "classes": {},
+  "objectVersion": "50",
+  "objects": {},
+  "rootObject": "PROJECT_ID"
+}
