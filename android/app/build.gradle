@@ -1,0 +1,29 @@
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.example.raonson"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            // configure in Codemagic or local keystore
+            // storeFile file("keystore.jks")
+            // storePassword "..."
+            // keyAlias "key"
+            // keyPassword "..."
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+        }
+    }
+}
