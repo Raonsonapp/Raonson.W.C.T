@@ -1,14 +1,19 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services'
+}
+
 android {
-    namespace "com.example.game"
-    compileSdkVersion 34
+    namespace "com.raonson.app"
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.game"
-        minSdkVersion 21
-        targetSdkVersion 34
+        applicationId "com.raonson.app"
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
     }
 
     compileOptions {
@@ -17,6 +22,9 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = '17'
     }
+}
+
+dependencies {
 }
