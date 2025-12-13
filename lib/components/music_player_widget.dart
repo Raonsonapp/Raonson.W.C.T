@@ -3,38 +3,24 @@ import 'package:audioplayers/audioplayers.dart';
 
 class MusicPlayerWidget extends StatefulWidget {
   final String url;
-  MusicPlayerWidget({required this.url});
+  const MusicPlayerWidget({super.key, required this.url});
 
   @override
-  _MusicPlayerWidgetState createState() => _MusicPlayerWidgetState();
+  State<MusicPlayerWidget> createState() => _MusicPlayerWidgetState();
 }
 
 class _MusicPlayerWidgetState extends State<MusicPlayerWidget> {
   final AudioPlayer _player = AudioPlayer();
-  bool isPlaying = false;
 
-  @override
-  void dispose() {
-    _player.dispose();
-    super.dispose();
-  }
-
-  Future<void> toggle() async {
-    if (isPlaying) {
-      await _player.pause();
-    } else {
-      await _player.play(UrlSource(widget.url));
-    }
-    setState(() { isPlaying = !isPlaying; });
+  void play() {
+    _player.play(UrlSource(widget.url));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow), onPressed: toggle),
-        Expanded(child: Text('Music track', style: TextStyle(color: Colors.white))),
-      ],
+    return IconButton(
+      icon: const Icon(Icons.play_arrow),
+      onPressed: play,
     );
   }
 }
