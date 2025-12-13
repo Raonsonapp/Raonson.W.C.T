@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 import '../screens/chatgpt_screen.dart';
 import '../screens/kingai_screen.dart';
 
-class AppRoutes {
-  static const chatGPT = '/chatgpt';
-  static const kingAI = '/kingai';
-}
-
 class AppRouter {
   static Route<dynamic> generate(RouteSettings settings) {
     switch (settings.name) {
-      case AppRoutes.chatGPT:
+      case '/chatgpt':
         return MaterialPageRoute(builder: (_) => const ChatGPTScreen());
-      case AppRoutes.kingAI:
+      case '/kingai':
         return MaterialPageRoute(builder: (_) => const KingAIScreen());
       default:
         return MaterialPageRoute(
