@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'providers/auth_provider.dart';
-import 'screens/home_screen.dart';
+import 'routes/app_router.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-      ],
-      child: RaonsonApp(),
-    ),
-  );
+  runApp(const RaonsonApp());
 }
 
 class RaonsonApp extends StatelessWidget {
+  const RaonsonApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Raonson',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        scaffoldBackgroundColor: Colors.black,
-      ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      title: 'Raonson',
+      onGenerateRoute: AppRouter.generate,
+      initialRoute: '/chatgpt',
     );
   }
 }
