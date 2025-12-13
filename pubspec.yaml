@@ -5,42 +5,37 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # UI
-  cupertino_icons: ^1.0.6
-  flutter_svg: ^2.0.7
-  lottie: ^2.7.0
+  cupertino_icons: ^1.0.8
 
-  # State management
-  provider: ^6.0.5
-
-  # Firebase (SDK v2 compatible)
-  firebase_core: ^2.27.0
-  firebase_auth: ^4.17.8
-  cloud_firestore: ^4.15.8
-  firebase_storage: ^11.6.8
+  # Firebase
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.20.0
+  cloud_firestore: ^4.17.5
+  firebase_storage: ^11.7.7
 
   # Media
-  image_picker: ^1.0.7
+  image_picker: ^1.1.2
   video_player: ^2.9.2
-  chewie: ^1.8.1
+  chewie: ^1.8.7
+
+  # State
+  provider: ^6.1.5+1
 
   # Utils
-  http: ^1.2.0
+  uuid: ^4.5.2
+  http: ^1.2.2
   intl: ^0.18.1
-  uuid: ^4.3.3
-  shared_preferences: ^2.2.2
-  permission_handler: ^11.3.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
