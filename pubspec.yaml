@@ -1,41 +1,46 @@
 name: raonson
-description: Instagram-style social app with AI chat and KingAI
+description: Instagram-style social app
 publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <3.4.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.5
+  # UI
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.7
+  lottie: ^2.7.0
 
-  # Firebase
-  firebase_core: ^2.15.1
-  firebase_auth: ^4.9.0
-  cloud_firestore: ^4.8.4
-  firebase_storage: ^11.2.4
-
-  # State
+  # State management
   provider: ^6.0.5
 
+  # Firebase (SDK v2 compatible)
+  firebase_core: ^2.27.0
+  firebase_auth: ^4.17.8
+  cloud_firestore: ^4.15.8
+  firebase_storage: ^11.6.8
+
   # Media
-  image_picker: ^1.0.4
-  video_player: ^2.8.2   # ⬅️ МАХСУС поён карда шуд
-  chewie: ^1.7.0
+  image_picker: ^1.0.7
+  video_player: ^2.9.2
+  chewie: ^1.8.1
 
   # Utils
-  http: ^1.1.0
+  http: ^1.2.0
+  intl: ^0.18.1
   uuid: ^4.3.3
   shared_preferences: ^2.2.2
-  intl: ^0.18.1
+  permission_handler: ^11.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
