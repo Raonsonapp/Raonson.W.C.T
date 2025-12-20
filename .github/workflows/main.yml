@@ -1,17 +1,4 @@
-name: Flutter APK
-
-on: 
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: subosito/flutter-action@v2
+- uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.6'
-
-      - run: flutter pub get
-      - run: flutter build apk --release
+          # Версияро аз 3.16.0 ба 3.19.0 ё охирин иваз кунед
+          flutter-version: '3.19.0'
