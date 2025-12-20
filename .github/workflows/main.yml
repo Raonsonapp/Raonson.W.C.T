@@ -1,4 +1,40 @@
-- uses: subosito/flutter-action@v2
+name: Raonson Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
-          # Версияро аз 3.16.0 ба 3.19.0 ё охирин иваз кунед
-          flutter-version: '3.19.0'
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Repair and Build
+        run: |
+          # 1. Тоза кардани кэш ва файлҳои кӯҳна
+          flutter clean
+          
+          # 2. Барқарор кардани вобастагиҳо
+          flutter pub get
+          
+          # 3. МАҶБУРӢ сохтани файлҳои Android (ин қадам муҳим аст)
+          # Мо аввал папкаи android-ро тоза мекунем, то Flutter онро аз нав дуруст созад
+          rm -rf android
+          flutter create . --platforms android --package-name com.raonson.app
+          
+          # 4. Сохтани файли local.properties
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+          echo "flutter.sdk=$FLUTTER_ROOT" >> android/local.properties
+          
+          # 5. Иҷрои Build
+          flutter build apk --debug
