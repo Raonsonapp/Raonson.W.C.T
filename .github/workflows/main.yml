@@ -1,8 +1,8 @@
-name: Raonson
+name: Raonson Final Fix
 
 on:
   push:
-    anches: [ main, master ]
+    branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
 
@@ -25,16 +25,15 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Force Clean & Recreate
+      - name: Atomic Rebuild
         run: |
-          # 1. Тоза кардани ҳама файлҳои шубҳанок
-          rm -rf android ios web macos linux windows
-          rm -f pubspec.lock
+          # 1. Тозакунии куллӣ
+          find . -maxdepth 1 ! -name 'lib' ! -name '.github' ! -name '.' -exec rm -rf {} +
           
-          # 2. Сохтани файли pubspec.yaml-и тоза (агар дар он хато бошад)
+          # 2. Эҷоди файли pubspec.yaml-и стандартӣ
           cat <<EOF > pubspec.yaml
           name: raonson
-          description: "Raonson mobile app"
+          description: "Raonson App"
           publish_to: 'none'
           version: 1.0.0+1
           environment:
@@ -51,11 +50,24 @@ jobs:
             uses-material-design: true
           EOF
 
-          # 3. Сохтани лоиҳаи нав дар болои коди мавҷуда
-          flutter create . --platforms android --package-name com.raonson.app --force
+          # 3. Агар папкаи lib набошад ё main.dart набошад, як файли тестӣ месозад
+          if [ ! -d "lib" ]; then mkdir lib; fi
+          if [ ! -f "lib/main.dart" ]; then
+            cat <<EOF > lib/main.dart
+            import 'package:flutter/material.dart';
+            void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Text('Raonson Ready')))));
+          EOF
+          fi
+
+          # 4. Сохтани лоиҳаи Android аз аввал
+          flutter create . --platforms android --force
           
-          # 4. Насб кардани пакетҳо
+          # 5. Насби пакетҳо ва сохтан
           flutter pub get
-          
-          # 5. Сохтани APK
           flutter build apk --debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: raonson-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
