@@ -2,7 +2,7 @@ name: Raonson Master Fix
 
 on:
   push:
-    branches: [ main, master ]
+    anches: [ main, master ]
   pull_request:
     branches: [ main, master ]
 
